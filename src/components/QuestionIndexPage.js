@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import questionIndexData from '../questionsIndexData';
+import NewQuestionForm from './NewQuestionForm';
 
 class QuestionIndexPage extends Component {
   constructor(props) {
@@ -8,6 +9,24 @@ class QuestionIndexPage extends Component {
       questions: questionIndexData
     }
     console.log('Component initialized')
+    this.createQuestion = this.createQuestion.bind(this);
+  }
+
+  createQuestion(params) {
+    this.setState((state) => {
+      // [].concat(state.questions) <- another way to copy an array
+      return {
+        questions: [
+          ...state.questions, // copy all existing questions
+          {
+            id: (Math.max(...state.questions.map(q => q.id)) + 1), // find the largest id within an array and add 1 to it.
+            // title: params.title,
+            // body: params.body
+            ...params
+          }
+        ]
+      }
+    })
   }
 
   deleteQuestion(id) {
@@ -24,6 +43,7 @@ class QuestionIndexPage extends Component {
     console.log('Question Index Page Rendered')
     return(
       <main>
+        <NewQuestionForm createQuestion={this.createQuestion}/>
         {this.state.questions.map(q => {
           return(
             <div key={q.id}>
