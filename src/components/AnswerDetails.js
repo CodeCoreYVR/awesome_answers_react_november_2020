@@ -1,4 +1,4 @@
-const AnswerDetails = ({ body, author, created_at }) => {
+const AnswerDetails = ({ body, author, created_at, id, deleteAnswer }) => {
   return (
     <div>
       <p>{body}</p>
@@ -6,6 +6,7 @@ const AnswerDetails = ({ body, author, created_at }) => {
       <p>
         <strong>Created at:</strong> {new Date(created_at).toLocaleString()}
       </p>
+      <button onClick={() => deleteAnswer(id)}>Delete</button>
     </div>
   )
 }

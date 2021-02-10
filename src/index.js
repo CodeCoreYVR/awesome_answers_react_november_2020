@@ -9,8 +9,8 @@ import QuestionIndexPage from './components/QuestionIndexPage';
 
 // React.StrictMode is a development only component will give you hints about the compoents that ou write
 ReactDOM.render(
-  // <QuestionShowPage />,
-  <QuestionIndexPage/>,
+  <QuestionShowPage />,
+  // <QuestionIndexPage/>,
   document.getElementById('root')
 );
 
