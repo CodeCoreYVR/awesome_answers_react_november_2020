@@ -6,6 +6,7 @@ const QuestionDetails = (props) => {
 
   const randomDiv = <div>gwegweg</div>
 
+  console.log('Question Details Re-rendered')
   return (
     <div>
       <h2>{title}</h2>

@@ -19,6 +19,7 @@ class QuestionShowPage extends Component {
   }
 
   render() {
+    console.log('Question Show Page Rendered')
     const { title, body, author, view_count, created_at, updated_at, answers } = this.state;
     return(
       <main>
