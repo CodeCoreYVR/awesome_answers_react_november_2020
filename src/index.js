@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import QuestionShowPage from './components/QuestionShowPage';
+import QuestionIndexPage from './components/QuestionIndexPage';
 
 
 // React.StrictMode is a development only component will give you hints about the compoents that ou write
 ReactDOM.render(
-  <QuestionShowPage />,
+  // <QuestionShowPage />,
+  <QuestionIndexPage/>,
   document.getElementById('root')
 );
 
