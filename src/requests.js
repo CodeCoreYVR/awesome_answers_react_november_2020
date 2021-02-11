@@ -16,7 +16,7 @@ export const Session = {
   }
 }
 
-export const Questions = {
+export const Question = {
   index() {
     return fetch(`${BASE_URL}/questions`)
       .then(res => {

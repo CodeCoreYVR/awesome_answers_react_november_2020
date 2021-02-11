@@ -5,7 +5,7 @@ const AnswerList = ({ answers, deleteAnswer }) => {
 
   return (
     <>
-      {answers.map((a, i) => {
+      {answers ? answers.map((a, i) => {
         return <AnswerDetails
           key={i}
           id={a.id}
@@ -14,7 +14,7 @@ const AnswerList = ({ answers, deleteAnswer }) => {
           created_at={a.created_at}
           deleteAnswer={deleteAnswer}
         />
-      })}
+      }) : '' }
     </>
   )
 }

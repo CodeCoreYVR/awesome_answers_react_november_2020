@@ -23,11 +23,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {
-          this.state.clocksCount.map((c, i) => {
-            return <CurrentDateTime key={i} />
-          })
-        }
+        <QuestionShowPage />
       </div>
     );
   }
