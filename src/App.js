@@ -3,6 +3,7 @@ import { Component } from 'react';
 import QuestionShowPage from './components/QuestionShowPage';
 import QuestionIndexPage from './components/QuestionIndexPage';
 import CurrentDateTime from './components/CurrentDateTime';
+import QuestionNewPage from './components/QuestionNewPage';
 import {
   BrowserRouter,
   Route,
@@ -33,6 +34,7 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route path='/' exact render={() => <div>Hello World</div> } />
+            <Route path='/questions/new' component={QuestionNewPage} />
             <Route path='/questions/:id' component={QuestionShowPage} />
             <Route path='/questions' component={QuestionIndexPage} />
           </Switch>

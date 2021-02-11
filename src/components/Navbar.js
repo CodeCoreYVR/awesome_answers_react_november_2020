@@ -7,6 +7,8 @@ const Navbar = () => {
       <NavLink to='/questions'>Questions Index</NavLink>
       |
       <NavLink to='/'>Welcome</NavLink>
+      |
+      <NavLink to='/questions/new'>Question New Page</NavLink>
     </nav>
   )
 
