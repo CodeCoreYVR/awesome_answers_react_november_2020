@@ -3,6 +3,11 @@ import { Component } from 'react';
 import QuestionShowPage from './components/QuestionShowPage';
 import QuestionIndexPage from './components/QuestionIndexPage';
 import CurrentDateTime from './components/CurrentDateTime';
+import {
+  BrowserRouter,
+  Route,
+  Switch
+} from 'react-router-dom'
 import { Session } from './requests';
 
 class App extends Component {
@@ -23,7 +28,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <QuestionShowPage />
+        <BrowserRouter>
+          <Switch>
+            <Route path='/' exact render={() => <div>Hello World</div> } />
+            <Route path='/questions/50' component={QuestionShowPage} />
+            <Route path='/questions' component={QuestionIndexPage} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
