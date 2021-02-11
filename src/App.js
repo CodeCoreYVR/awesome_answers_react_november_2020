@@ -9,6 +9,7 @@ import {
   Switch
 } from 'react-router-dom'
 import { Session } from './requests';
+import Navbar from './components/Navbar';
 
 class App extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
+          <Navbar />
           <Switch>
             <Route path='/' exact render={() => <div>Hello World</div> } />
             <Route path='/questions/:id' component={QuestionShowPage} />
