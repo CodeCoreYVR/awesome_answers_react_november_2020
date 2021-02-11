@@ -3,6 +3,7 @@ import { Component } from 'react';
 import QuestionShowPage from './components/QuestionShowPage';
 import QuestionIndexPage from './components/QuestionIndexPage';
 import CurrentDateTime from './components/CurrentDateTime';
+import { Session } from './requests';
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +11,13 @@ class App extends Component {
     this.state = {
       clocksCount: [1]
     }
+  }
+
+  componentDidMount() {
+    Session.create({
+      email: 'js@winterfell.gov',
+      password: 'supersecret'
+    }).then(console.log)
   }
 
   render() {
