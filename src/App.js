@@ -6,6 +6,7 @@ import CurrentDateTime from './components/CurrentDateTime';
 import Navbar from './components/Navbar';
 import NewQuestionForm from './components/NewQuestionForm'
 import SignInPage from './components/SignInPage'
+import AuthRoute from './components/AuthRoute';
 import {
   BrowserRouter,
   Route,
@@ -54,7 +55,8 @@ class App extends Component {
           <Switch>
             
             <Route exact path='/questions' component={QuestionIndexPage} />
-            <Route path='/questions/new' component={NewQuestionForm} />
+            {/*<Route path='/questions/new' component={NewQuestionForm} />*/}
+            <AuthRoute path='/questions/new' isAuth={this.state.user} component={NewQuestionForm}/>
             <Route path='/questions/:id' component={QuestionShowPage} />
             {/*<Route path='/sign_in'><SignInPage handleSubmit={this.handleSubmit}/></Route>*/}
             {/* https://reactrouter.com/web/api/Route/render-func */}
