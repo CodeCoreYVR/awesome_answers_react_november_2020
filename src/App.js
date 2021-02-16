@@ -28,6 +28,13 @@ class App extends Component {
     //   email: 'js@winterfell.gov',
     //   password: 'supersecret'
     // }).then(console.log)
+    Session.currentUser()
+    .then(user=>{
+      console.log('user', user);
+      this.setState((state)=>{
+        return {user:user}
+      })
+    })
   }
   handleSubmit(params){
     // params look like this : {email: 'js@winterfell.gov', password: 'supersecret'}
@@ -46,7 +53,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-        <Navbar/>
+        <Navbar currentUser={this.state.user}/>
           <Switch>
             
             <Route exact path='/questions' component={QuestionIndexPage} />
