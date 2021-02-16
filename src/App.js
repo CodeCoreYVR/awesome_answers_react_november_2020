@@ -3,6 +3,9 @@ import { Component } from 'react';
 import QuestionShowPage from './components/QuestionShowPage';
 import QuestionIndexPage from './components/QuestionIndexPage';
 import CurrentDateTime from './components/CurrentDateTime';
+import Navbar from './components/Navbar';
+import NewQuestionForm from './components/NewQuestionForm'
+import SignInPage from './components/SignInPage'
 import {
   BrowserRouter,
   Route,
@@ -14,25 +17,40 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      clocksCount: [1]
+      clocksCount: [1],
+      user:null
     }
+    this.handleSubmit=this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
-    Session.create({
-      email: 'js@winterfell.gov',
-      password: 'supersecret'
-    }).then(console.log)
+    // Session.create({
+    //   email: 'js@winterfell.gov',
+    //   password: 'supersecret'
+    // }).then(console.log)
+  }
+  handleSubmit(params){
+    // params look like this : {email: 'js@winterfell.gov', password: 'supersecret'}
+    Session.create(params).then(user=>{
+      console.log(user)
+      this.setState(state=>{
+        return{user:user}
+      })
+
+    })
   }
 
   render() {
     return (
       <div className="App">
         <BrowserRouter>
+        <Navbar/>
           <Switch>
-            <Route path='/' exact render={() => <div>Hello World</div> } />
+            
+            <Route exact path='/questions' component={QuestionIndexPage} />
+            <Route path='/questions/new' component={NewQuestionForm} />
             <Route path='/questions/:id' component={QuestionShowPage} />
-            <Route path='/questions' component={QuestionIndexPage} />
+            <Route path='/sign_in'><SignInPage handleSubmit={this.handleSubmit}/></Route>
           </Switch>
         </BrowserRouter>
       </div>
