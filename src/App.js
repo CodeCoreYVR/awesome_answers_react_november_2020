@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import NewQuestionForm from './components/NewQuestionForm'
 import SignInPage from './components/SignInPage'
 import AuthRoute from './components/AuthRoute';
+import SignUpPage from './components/SignUpPage'
 import {
   BrowserRouter,
   Route,
@@ -23,6 +24,7 @@ class App extends Component {
     }
     this.handleSubmit=this.handleSubmit.bind(this)
     this.destroySession=this.destroySession.bind(this)
+    this.handleSignUp=this.handleSignUp.bind(this)
   }
 
   componentDidMount() {
@@ -57,7 +59,14 @@ class App extends Component {
         )
       })
   }
+handleSignUp(){
+  Session.currentUser().then(user=>{
+    this.setState((state)=>{
+      return {user:user}
+    })
+  })
 
+}
   render() {
     return (
       <div className="App">
@@ -72,6 +81,7 @@ class App extends Component {
             {/*<Route path='/sign_in'><SignInPage handleSubmit={this.handleSubmit}/></Route>*/}
             {/* https://reactrouter.com/web/api/Route/render-func */}
             <Route path='/sign_in' render={(routeProps)=><SignInPage handleSubmit={this.handleSubmit} {...routeProps}/>} />
+            <Route path='/sign_up' render={(routeProps)=><SignUpPage handleSignUp={this.handleSignUp} {...routeProps}/>}/> 
           </Switch>
         </BrowserRouter>
       </div>

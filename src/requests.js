@@ -27,6 +27,19 @@ export const Session = {
     }).then(res => res.json())
   }
 }
+export const User={
+  create(params){
+    return fetch(`${BASE_URL}/users`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user:params})
+      }
+    ).then(res => res.json());
+  }
+}
 
 export const Question = {
   index() {
