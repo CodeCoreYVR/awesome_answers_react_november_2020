@@ -31,13 +31,15 @@ class App extends Component {
   }
   handleSubmit(params){
     // params look like this : {email: 'js@winterfell.gov', password: 'supersecret'}
-    Session.create(params).then(user=>{
-      console.log(user)
-      this.setState(state=>{
-        return{user:user}
+    Session.create(params).then(()=>{
+      return Session.currentUser()}
+      ).then(user=>{
+        console.log('user', user);
+        this.setState((state)=>{
+          return {user:user}
+        })
       })
 
-    })
   }
 
   render() {
