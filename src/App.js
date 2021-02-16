@@ -22,6 +22,7 @@ class App extends Component {
       user:null
     }
     this.handleSubmit=this.handleSubmit.bind(this)
+    this.destroySession=this.destroySession.bind(this)
   }
 
   componentDidMount() {
@@ -46,12 +47,22 @@ class App extends Component {
       })
 
   }
+  destroySession(){
+    Session.destroy()
+    .then(res=>{
+      this.setState(
+          (
+          state=>{return {user:null}}
+          )
+        )
+      })
+  }
 
   render() {
     return (
       <div className="App">
         <BrowserRouter>
-        <Navbar currentUser={this.state.user}/>
+        <Navbar currentUser={this.state.user} destroySession={this.destroySession}/>
           <Switch>
             
             <Route exact path='/questions' component={QuestionIndexPage} />
