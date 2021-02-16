@@ -24,10 +24,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // Session.create({
-    //   email: 'js@winterfell.gov',
-    //   password: 'supersecret'
-    // }).then(console.log)
+
     Session.currentUser()
     .then(user=>{
       console.log('user', user);
@@ -59,7 +56,9 @@ class App extends Component {
             <Route exact path='/questions' component={QuestionIndexPage} />
             <Route path='/questions/new' component={NewQuestionForm} />
             <Route path='/questions/:id' component={QuestionShowPage} />
-            <Route path='/sign_in'><SignInPage handleSubmit={this.handleSubmit}/></Route>
+            {/*<Route path='/sign_in'><SignInPage handleSubmit={this.handleSubmit}/></Route>*/}
+            {/* https://reactrouter.com/web/api/Route/render-func */}
+            <Route path='/sign_in' render={(routeProps)=><SignInPage handleSubmit={this.handleSubmit} {...routeProps}/>} />
           </Switch>
         </BrowserRouter>
       </div>
