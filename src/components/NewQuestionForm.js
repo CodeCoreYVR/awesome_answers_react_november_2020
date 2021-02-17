@@ -1,7 +1,6 @@
 import React from 'react';
 
-const NewQuestionForm = ({ createQuestion }) => {
-
+const NewQuestionForm = ({ createQuestion, newQuestionData, updateQuestionData }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -12,17 +11,34 @@ const NewQuestionForm = ({ createQuestion }) => {
     createQuestion(params);
   }
 
+  function handleQuestionInput(event) {
+    const value = event.currentTarget.value;
+    const name = event.currentTarget.name;
+    console.log(name);
+    updateQuestionData({[name]: value})
+  }
+
   return(
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor='title'>Title</label>
         <br />
-        <input name='title' id='title' />
+        <input 
+          name='title'
+          id='title'
+          value={newQuestionData.title}
+          onChange={handleQuestionInput}
+        />
       </div>
       <div>
         <label htmlFor='body'>Body</label>
         <br />
-        <textarea name='body' id='body' />
+        <textarea 
+          name='body'
+          id='body'
+          value={newQuestionData.body}
+          onChange={handleQuestionInput}
+        />
       </div>
       <div>
         <input type='submit' value='Submit' />
