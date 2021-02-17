@@ -15,6 +15,7 @@ import {
   Switch
 } from 'react-router-dom'
 import { Session } from './requests';
+import HookCurrentDateTime from './components/HookCurrentDateTime';
 
 class App extends Component {
   constructor(props) {
@@ -75,6 +76,7 @@ handleSignUp(){
         <Navbar currentUser={this.state.user} destroySession={this.destroySession}/>
           <Switch>
             <Route exact path='/questions' component={QuestionIndexPage} />
+            <Route exact path='/clocks' component={HookCurrentDateTime} />
             {/*<Route path='/questions/new' component={NewQuestionForm} />*/}
             <AuthRoute path='/questions/new' isAuth={this.state.user} component={QuestionNewPage}/>
             <Route path='/questions/:id' component={QuestionShowPage} />

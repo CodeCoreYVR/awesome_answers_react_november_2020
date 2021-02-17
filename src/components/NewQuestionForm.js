@@ -1,4 +1,15 @@
 import React from 'react';
+import BlueInput from './BlueInput';
+import ColoredLabel from './ColoredLabel';
+// import './NewQuestionForm.css';
+// const styles = {
+//   button: {
+//     backgroundColor: 'blue'
+//   },
+//   label: {
+//     fontSize: '20px'
+//   }
+// }
 
 const NewQuestionForm = ({ createQuestion, newQuestionData, updateQuestionData }) => {
   const handleSubmit = (event) => {
@@ -16,7 +27,7 @@ const NewQuestionForm = ({ createQuestion, newQuestionData, updateQuestionData }
   return(
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor='title'>Title</label>
+        <ColoredLabel htmlFor='title' primary={true} >Title</ColoredLabel>
         <br />
         <input 
           name='title'
@@ -36,7 +47,7 @@ const NewQuestionForm = ({ createQuestion, newQuestionData, updateQuestionData }
         />
       </div>
       <div>
-        <input type='submit' value='Submit' />
+        <BlueInput type='submit' value='Submit' />
       </div>
     </form>
   )
