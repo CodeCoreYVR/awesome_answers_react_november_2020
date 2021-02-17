@@ -15,8 +15,8 @@ class QuestionNewPage extends Component {
     this.updateQuestionData = this.updateQuestionData.bind(this)
   }
 
-  createQuestion(params) {
-    Question.create(params)
+  createQuestion() {
+    Question.create(this.state.newQuestionData)
       .then(({ id }) => {
         this.props.history.push(`/questions/${id}`)
       })
@@ -26,6 +26,9 @@ class QuestionNewPage extends Component {
     this.setState((state) => {
       console.log(props);
       console.log(state);
+      if (state.newQuestionData.title.length > 10) {
+        alert('title is too long')
+      }
       // return {
       //   newQuestionData: {
       //     ...state.newQuestionData,
