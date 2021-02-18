@@ -13,9 +13,6 @@ const FormErrors = props =>{
         console.log('Filtered Errors', filteredErrors)
     }
     
-    
-    
-    
     function displayErrors(errorsArray){
         if(errorsArray){
             let newArray=errorsArray.map((error,i)=><li key={i}>{error}</li>)

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import QuestionDetails from './QuestionDetails';
 import AnswerList from './AnswerList';
 import { Question } from '../requests';
+import {Link} from 'react-router-dom';
 
 class QuestionShowPage extends Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class QuestionShowPage extends Component {
           created_at={new Date(created_at)}
           updated_at={new Date(updated_at)}
         />
+        <Link question={this.state.question} to={`/questions/${this.state.question.id}/edit`}>Edit</Link>
         <AnswerList
           answers={answers}
           deleteAnswer={this.deleteAnswer}

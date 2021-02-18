@@ -10,6 +10,7 @@ import SignInPage from './components/SignInPage'
 import AuthRoute from './components/AuthRoute';
 import SignUpPage from './components/SignUpPage';
 import NotFoundPage from './components/NotFoundPage';
+import QuestionEditPage from './components/QuestionEditPage';
 import {
   BrowserRouter,
   Route,
@@ -79,7 +80,8 @@ handleSignUp(){
             <Route exact path='/questions' component={QuestionIndexPage} />
             <Route exact path='/clocks' component={HookCurrentDateTime} />
             {/*<Route path='/questions/new' component={NewQuestionForm} />*/}
-            <AuthRoute path='/questions/new' isAuth={this.state.user} component={NewQuestionForm}/>
+            <AuthRoute exact path='/questions/new' isAuth={this.state.user} component={NewQuestionForm}/>
+            <AuthRoute exact path='/questions/:id/edit' isAuth={this.state.user} component={QuestionEditPage}/>
             <Route path='/questions/:id' component={QuestionShowPage} />
             {/*<Route path='/sign_in'><SignInPage handleSubmit={this.handleSubmit}/></Route>*/}
             {/* https://reactrouter.com/web/api/Route/render-func */}
