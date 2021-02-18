@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NewQuestionForm from './NewQuestionForm';
+import NewQuestionForm from './NewQuestionForm1';
 import { Question } from '../requests';
 import { Link } from 'react-router-dom';
 
@@ -55,7 +55,7 @@ class QuestionIndexPage extends Component {
     console.log('Question Index Page Rendered')
     return(
       <main>
-        <NewQuestionForm createQuestion={this.createQuestion}/>
+        {/*<NewQuestionForm createQuestion={this.createQuestion}/>*/}
         {this.state.questions.map(q => {
           return(
             <div key={q.id}>

@@ -1,56 +1,45 @@
-import React from 'react';
-import BlueInput from './BlueInput';
-import ColoredLabel from './ColoredLabel';
-// import './NewQuestionForm.css';
-// const styles = {
-//   button: {
-//     backgroundColor: 'blue'
-//   },
-//   label: {
-//     fontSize: '20px'
-//   }
-// }
+import React, {useState} from 'react';
+import {Question} from '../requests';
 
-const NewQuestionForm = ({ createQuestion, newQuestionData, updateQuestionData }) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    createQuestion();
-  }
+const NewQuestionForm = (props)=>{
+    const [title,setTitle]=useState('');
+    const [body,setBody]=useState('');
 
-  function handleQuestionInput(event) {
-    const value = event.currentTarget.value;
-    const name = event.currentTarget.name;
-    console.log(name);
-    updateQuestionData({[name]: value})
-  }
+    const handleSubmit = (event)=>{
+        event.preventDefault();
+        const formData= new FormData(event.currentTarget);
+        const params={
+            title: formData.get('title'),
+            body: formData.get('body')
+        }
+        createQuestion(params);
+        event.currentTarget.reset();
+    }
+    function createQuestion(params){
+        Question.create(params)
+        .then((question)=>{
+            if(question.id){
+                const id = question.id;
+                props.history.push(`/questions/${id}`)
+            }
+        })
+    }
 
-  return(
-    <form onSubmit={handleSubmit}>
-      <div>
-        <ColoredLabel htmlFor='title' primary={true} >Title</ColoredLabel>
-        <br />
-        <input 
-          name='title'
-          id='title'
-          value={newQuestionData.title}
-          onChange={handleQuestionInput}
-        />
-      </div>
-      <div>
-        <label htmlFor='body'>Body</label>
-        <br />
-        <textarea 
-          name='body'
-          id='body'
-          value={newQuestionData.body}
-          onChange={handleQuestionInput}
-        />
-      </div>
-      <div>
-        <BlueInput type='submit' value='Submit' />
-      </div>
-    </form>
-  )
+    return(
+        <div>
+            <h1>New Question</h1>
+            <form onSubmit={event=>handleSubmit(event)}>
+                <div>
+                    <label htmlFor='title'>Title: </label>
+                    <input name='title' id='title' value={title} onChange={e=>setTitle(e.target.value)}/>
+                </div>
+                <div>
+                    <label htmlFor='body'>Body: </label>
+                    <textarea name='body' id='body' cols='60' rows='5' value={body} onChange={e=>setBody(e.target.value)} />
+                </div>
+                <input type='submit' value='Submit'/>
+            </form>
+        </div>
+    )
 }
-
-export default NewQuestionForm
+export default NewQuestionForm;

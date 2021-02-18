@@ -8,7 +8,8 @@ import Navbar from './components/Navbar';
 import NewQuestionForm from './components/NewQuestionForm'
 import SignInPage from './components/SignInPage'
 import AuthRoute from './components/AuthRoute';
-import SignUpPage from './components/SignUpPage'
+import SignUpPage from './components/SignUpPage';
+import NotFoundPage from './components/NotFoundPage';
 import {
   BrowserRouter,
   Route,
@@ -78,12 +79,13 @@ handleSignUp(){
             <Route exact path='/questions' component={QuestionIndexPage} />
             <Route exact path='/clocks' component={HookCurrentDateTime} />
             {/*<Route path='/questions/new' component={NewQuestionForm} />*/}
-            <AuthRoute path='/questions/new' isAuth={this.state.user} component={QuestionNewPage}/>
+            <AuthRoute path='/questions/new' isAuth={this.state.user} component={NewQuestionForm}/>
             <Route path='/questions/:id' component={QuestionShowPage} />
             {/*<Route path='/sign_in'><SignInPage handleSubmit={this.handleSubmit}/></Route>*/}
             {/* https://reactrouter.com/web/api/Route/render-func */}
             <Route path='/sign_in' render={(routeProps)=><SignInPage handleSubmit={this.handleSubmit} {...routeProps}/>} />
             <Route path='/sign_up' render={(routeProps)=><SignUpPage handleSignUp={this.handleSignUp} {...routeProps}/>}/> 
+            <Route component={NotFoundPage}/>
           </Switch>
         </BrowserRouter>
       </div>
